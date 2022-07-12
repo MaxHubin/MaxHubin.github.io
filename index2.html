@@ -1,0 +1,19 @@
+<!DOCTYPE html><html lang="en"><head>
+
+
+    <link rel="manifest" href="manifest.json">
+
+
+    <script>
+        // Check to make sure the browser supports service workers
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .register('/service-worker.js')
+                .then(() => {
+                    console.log('Service worker registered');
+                })
+                .catch(err => {
+                    console.log('Service worker registration failed: ' + err);
+                });
+        }
+    </script>

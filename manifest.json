@@ -1,15 +1,15 @@
 {
-  "short_name": "Mine",
-  "name": "Mine",
+  "short_name": "Пристрелка",
+  "name": "Пристрелка",
   "icons": [
     {
-      "src":"./android-icon-192x192.61a7ce36.png",
-      "sizes": "192x192",
+      "src":"./fire.png",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ],
   "start_url": "/?utm_source=homescreen",
-  "background_color": "#e05a47",
-  "theme_color": "#e05a47",
+  "background_color": "#000",
+  "theme_color": "#000",
   "display": "standalone"
 }
