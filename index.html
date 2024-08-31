@@ -11,6 +11,12 @@
 <p>This is a simple PWA example.</p>
 
 <script>
+
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        alert('12341234');
+    });
+
     window.addEventListener('load', () => {
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker
