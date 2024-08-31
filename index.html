@@ -7,8 +7,10 @@
     <link rel="manifest" href="/manifest.json">
 </head>
 <body>
-<h1>Hello, PWA World!21</h1>
+<h1>Hello, PWA World!4</h1>
 <p>This is a simple PWA example.</p>
+<button id="install-button" style="display: none;">Установить приложение</button>
+
 
 <script>
     alert('test');
@@ -19,24 +21,21 @@
         deferredPrompt = e;
     });
 
-   const installApp = async () => {
-        alert("235");
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
+    const installButton = document.getElementById('install-button');
+    installButton.style.display = 'block';
 
-            const { outcome } = await deferredPrompt.userChoice;
-
-            if (outcome === 'accepted') {
-                console.log('accepted');
+    installButton.addEventListener('click', () => {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the A2HS prompt');
             } else {
-                console.log('rejected');
+                console.log('User dismissed the A2HS prompt');
             }
-
             deferredPrompt = null;
-        }
-    };
+        });
+    });
 
-    setTimeout(()=>installApp(),5000)
 
 
     window.addEventListener('load', () => {
