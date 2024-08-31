@@ -1,14 +1,59 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chatterfy</title>
-    <script type="module" crossorigin src="/assets/index-BNn43BFV.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DUtEG05j.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWA Example2</title>
+    <link rel="manifest" href="/manifest.json">
+</head>
+<body>
+<h1>Hello, PWA World!4</h1>
+<p>This is a simple PWA example.</p>
+<button id="install-button" style="display: none;">Установить приложение</button>
+
+
+<script>
+    alert('test');
+
+    let deferredPrompt = null;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        alert('1234');
+        deferredPrompt = e;
+    });
+
+    const installButton = document.getElementById('install-button');
+    installButton.style.display = 'block';
+
+    installButton.addEventListener('click', () => {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the A2HS prompt');
+            } else {
+                console.log('User dismissed the A2HS prompt');
+            }
+            deferredPrompt = null;
+        });
+    });
+
+
+
+    window.addEventListener('load', () => {
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .register('/service-worker.js')
+                .then((registration) => {
+                    console.log(
+                        'ServiceWorker registration successful with scope: ',
+                        registration.scope,
+                    );
+                })
+                .catch((error) => {
+                    console.log('ServiceWorker registration failed: ', error);
+                });
+        }
+    });
+</script>
+</body>
 </html>
