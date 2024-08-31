@@ -13,9 +13,30 @@
 <script>
     alert('test');
 
+    let deferredPrompt = null;
+
     window.addEventListener('beforeinstallprompt', (e) => {
-        alert('12341234');
+        deferredPrompt = e;
     });
+
+    export const installApp = async () => {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+
+            const { outcome } = await deferredPrompt.userChoice;
+
+            if (outcome === 'accepted') {
+                console.log('accepted');
+            } else {
+                console.log('rejected');
+            }
+
+            deferredPrompt = null;
+        }
+    };
+
+    setTimeout(()=>installApp(),5000)
+
 
     window.addEventListener('load', () => {
         if ('serviceWorker' in navigator) {
