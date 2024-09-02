@@ -1,59 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PWA Example2</title>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hack</title>
     <link rel="manifest" href="/manifest.json">
-</head>
-<body>
-<h1>Hello, PWA World!4</h1>
-<p>This is a simple PWA example.</p>
-<button id="install-button" style="display: none;">Установить приложение</button>
-
-
-<script>
-    alert('test');
-
-    let deferredPrompt = null;
-
-    window.addEventListener('beforeinstallprompt', (e) => {
-        alert('1234');
-        deferredPrompt = e;
-    });
-
-    const installButton = document.getElementById('install-button');
-    installButton.style.display = 'block';
-
-    installButton.addEventListener('click', () => {
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choiceResult) => {
-            if (choiceResult.outcome === 'accepted') {
-                console.log('User accepted the A2HS prompt');
-            } else {
-                console.log('User dismissed the A2HS prompt');
-            }
-            deferredPrompt = null;
-        });
-    });
-
-
-
-    window.addEventListener('load', () => {
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker
-                .register('/service-worker.js')
-                .then((registration) => {
-                    console.log(
-                        'ServiceWorker registration successful with scope: ',
-                        registration.scope,
-                    );
-                })
-                .catch((error) => {
-                    console.log('ServiceWorker registration failed: ', error);
-                });
-        }
-    });
-</script>
-</body>
+    <meta key="title" content="Vite + NextUI" property="og:title" />
+    <meta
+      content="Make beautiful websites regardless of your design experience."
+      property="og:description"
+    />
+    <meta
+      content="Make beautiful websites regardless of your design experience."
+      name="description"
+    />
+    <meta
+      key="viewport"
+      content="viewport-fit=cover, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+      name="viewport"
+    />
+    <link href="/assets/favicon-DI5FVxIz.ico" rel="icon" />
+    <script type="module" crossorigin src="/assets/index-D85U8PCf.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BqSeqABV.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
 </html>
